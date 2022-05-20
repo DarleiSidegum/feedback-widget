@@ -25,39 +25,23 @@ export function FeedbackContentStep({
   const feedbackTypeInfo = feedBackTypes[feedbackType];
 
   async function handleSumbmitFeedback(event: FormEvent) {
-    if (isSendingFeedback) {
-      return;
-    }
+    event.preventDefault;
     setIsSendingFeedback(true);
-    try {
-      await event.preventDefault;
-      await api.post("/feedbacks", {
+    api
+      .post("/feedbacks", {
         type: feedbackType,
-        screenshot,
         comment,
+        screenshot,
+      })
+      .then((response) => {
+        console.log("ENVIANDO");
+      })
+      .finally(() => {
+        console.log("ENVIADO");
       });
-      onFeedbackSent();
-    } catch (error) {
-      console.log(error);
-      setIsSendingFeedback(false);
-    }
+    setIsSendingFeedback(false);
+    onFeedbackSent();
   }
-  // async function handleSumbmitFeedback(event: FormEvent) {
-  //   try {
-  //     console.log("aqui");
-  //     event.preventDefault;
-  //     setIsSendingFeedback(true);
-  //     // await api.post("/feedbacks", {
-  //     //   type: feedbackType,
-  //     //   comment,
-  //     //   screenshot,
-  //     // });
-  //     setIsSendingFeedback(false);
-  //     onFeedbackSent();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     <>
