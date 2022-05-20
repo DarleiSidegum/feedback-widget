@@ -29,11 +29,11 @@ export function FeedbackContentStep({
       console.log("aqui");
       event.preventDefault;
       setIsSendingFeedback(true);
-      await api.post("/feedbacks", {
-        type: feedbackType,
-        comment,
-        screenshot,
-      });
+      // await api.post("/feedbacks", {
+      //   type: feedbackType,
+      //   comment,
+      //   screenshot,
+      // });
       setIsSendingFeedback(false);
       onFeedbackSent();
     } catch (error) {
